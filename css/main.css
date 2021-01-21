@@ -80,10 +80,13 @@ input[type="radio"]:checked + label {
     box-sizing: border-box;
     font-family: "M PLUS Rounded 1c","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ","Meiryo", Helvetica, SegoeUI, sans-serif;
 }
+.select {
+    display:inline-block;
+    text-align: center;
+}
 
 @media (max-width: 400px) {
     form{
-        display:none;
         width: 95%;
         border: 2px solid #ddd;
         margin: 5px;
