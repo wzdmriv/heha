@@ -35,7 +35,7 @@ input[type="button"]{
     font-size: 18px;
     outline: none;
     border: 2px solid #ddd;
-    background: #fff;
+    background: #eee;
     color: #444;
     width: 150px;
     box-sizing: border-box;
@@ -64,6 +64,7 @@ input[type="radio"]{
     -webkit-appearance: none;
 }
 input[type="radio"]:checked + label {
+    border: 2px solid #eee;
     background:#ddd;
     color: #000;
 }
