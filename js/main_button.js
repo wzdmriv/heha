@@ -9,7 +9,7 @@ function getParam(name, url) {
 }
 
 var room_id = getParam('room_id');
-var dbref = db.ref("/idList").child(room_id);
+var dbref = db.ref("/idList").child(room_id).child("config");
 dbref.on('value', (snapshot) =>{
     const data = snapshot.val();
     console.log(data);
