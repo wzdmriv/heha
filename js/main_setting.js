@@ -9,8 +9,8 @@ function genURL(){
         $("#img-qr").qrcode({width:200,height:200,text:utf8qrtext}); 
         var canvas = $("#canvas")[0]; //#canvasからcanvas要素を取得。[0]をつけるのがポイント。
         var img_src = canvas.toDataURL("image/png"); //toDataURLでpng形式に変換
-        $("#output").html(''); //canvas要素を削除
-        $("#output1").attr("src",img_src); //pngを表示
+        $("#img-qr").html(''); //canvas要素を削除
+        $("#img-qr1").attr("src",img_src); //pngを表示
         db.ref("/idList").child(room_id).child("config").set({mail:mail_address,time:10,weight:10,ha:"disable"});
     });
 }
