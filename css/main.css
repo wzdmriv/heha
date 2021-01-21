@@ -84,6 +84,12 @@ input[type="radio"]:checked + label {
     display:inline-block;
     text-align: center;
 }
+form{
+    width: 400px;
+    height: auto;
+    border: 2px solid #ddd;
+    margin: 5px;
+}
 
 @media (max-width: 400px) {
     form{
