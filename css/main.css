@@ -35,7 +35,7 @@ input[type="button"]{
     font-size: 18px;
     outline: none;
     border: 2px solid #ddd;
-    background: #eee;
+    background: #f0f0f0;
     color: #444;
     width: 150px;
     box-sizing: border-box;
