@@ -4,5 +4,5 @@ function genURL(){
     var room_id = document.forms.form1.room_id.value;
     var mail_address = document.forms.form1.mail_address.value;
     var url = room_id
-    document.getElementById( "gend_url" ).value = url ;
+    document.getElementById( "gend_url" ).value = "hoge" + url ;
 }
