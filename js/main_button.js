@@ -13,5 +13,6 @@ var dbref = db.ref("/idList").child(room_id).child("config");
 dbref.on('value', (snapshot) =>{
     const data = snapshot.val();
     const data_json = JSON.parse(data);
-    console.log(data_json[0]);
+    console.log(data_json[0][0]);
+    console.log("11");
 });
