@@ -6,3 +6,10 @@ function genURL(){
     var url = "https://wzdmriv.github.io/heha/heha_button.html/?room_id=" + room_id
     document.getElementById( "gend_url" ).value = url ;
 }
+
+function copyURL(){
+    var gend_url = document.getElementById( "gend_url" )
+    gend_url.select();
+    document.execCommand("Copy");
+    alert("コピー完了：" + gend_url.value);
+}
