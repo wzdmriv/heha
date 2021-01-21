@@ -7,6 +7,10 @@ body, html {
     line-height: 1.4em;
     font-family: "M PLUS Rounded 1c","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ","Meiryo", Helvetica, SegoeUI, sans-serif;
 }
+body {
+    padding:10vh 0;
+    background: #eee;
+}
 
 input[type="text"]{
     padding: 10px;
