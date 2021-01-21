@@ -12,7 +12,6 @@ var room_id = getParam('room_id');
 var dbref = db.ref("/idList").child(room_id).child("config");
 dbref.on('value', (snapshot) =>{
     const data = snapshot.val();
-    const data_json = JSON.parse(data);
-    console.log("hello");
-    console.log(data_json[0][0]);
+    console.log("hello1");
+    console.log(data[0]);
 });
