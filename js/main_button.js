@@ -11,5 +11,5 @@ function getParam(name, url) {
 var room_id = getParam('room_id');
 db.ref("/idList").child(room_id).on('value', (snapshot) =>{
     const data = snapshot.val();
-    console.log(data);
+    console.log(data)
   });
