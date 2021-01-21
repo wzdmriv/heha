@@ -1,11 +1,7 @@
 db.ref("/reslist").child("keylist").set("hello");
 
-document.addEventListener('click', function() {
-    document.getElementById('sleep-prevent-video-ios').play();
-    document.getElementById('sleep-prevent-video-android').play();
-});
-
-setInterval(function(){
-    document.getElementById('sleep-prevent-video-ios').play();
-    document.getElementById('sleep-prevent-video-android').play();
-}, 10000);
+function genURL(){
+    var room_id = document.forms.form1.room_id.value;
+    var mail_address = document.forms.form1.mail_address.value;
+    
+}

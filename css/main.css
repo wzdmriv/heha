@@ -2,7 +2,8 @@ body, html {
     padding:0px;
     margin:0px;
     text-align:center;
-    color:#222;
+    color:#fff;
+    background-color: #00bfff;
     line-height: 1.4em;
     font-family: "M PLUS Rounded 1c","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ","Meiryo", Helvetica, SegoeUI, sans-serif;
 }
@@ -13,7 +14,7 @@ input[type="text"]{
     font-size: 18px;
     outline: none;
     border: 2px solid rgba(255, 255, 255, 0.5);
-    background: rgba(63, 78, 100, 0.27);
+    background: #ddd;
     color: #222;
     width: 200px;
     box-sizing: border-box;
@@ -24,7 +25,7 @@ input[type="text"]:hover {
 }
 input[type="text"]:focus {
     border: 2px solid rgba(255, 255, 255, 1);
-    background:#eee;
+    background:#fff;
     color:#222;
 }
 
@@ -34,8 +35,8 @@ input[type="button"]{
     font-size: 18px;
     outline: none;
     border: 2px solid #ddd;
-    background: #eee;
-    color: #222;
+    background: #fff;
+    color: #444;
     width: 150px;
     box-sizing: border-box;
     font-family: "M PLUS Rounded 1c","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ","Meiryo", Helvetica, SegoeUI, sans-serif;
@@ -45,8 +46,8 @@ input[type="button"]:hover {
     background: #ddd;
 }
 input[type="button"]:focus {
-    background:rgba(63, 78, 100, 0.27);
-    color:#222;
+    background:#ddd;
+    color:#444;
 }
 input[type="radio"]{
     display: none;
@@ -54,8 +55,8 @@ input[type="radio"]{
     border-radius: 2px;
     font-size: 17px;
     outline: none;
-    border: 2px solid rgba(255, 255, 255, 0.7);
-    background: rgba(63, 78, 100, 0.27);
+    border: 2px solid #fff;
+    background: #ddd;
     color: #222;
     width: 200px;
     box-sizing: border-box;
@@ -63,7 +64,7 @@ input[type="radio"]{
     -webkit-appearance: none;
 }
 input[type="radio"]:checked + label {
-    background: rgba(63, 78, 100, 0.27);
+    background:#ddd;
     color: #000;
 }
 .label{
@@ -74,7 +75,7 @@ input[type="radio"]:checked + label {
     font-size: 18px;
     outline: none;
     border: 2px solid #ddd;
-    background: #eee;
+    background: #fff;
     color: #222;
     width: 170px;
     box-sizing: border-box;
@@ -84,10 +85,14 @@ input[type="radio"]:checked + label {
     display:inline-block;
     text-align: center;
 }
+.form{
+    display:inline-block;
+    text-align: center;
+}
 form{
     width: 400px;
     height: auto;
-    border: 2px solid #ddd;
+    border: 2px solid #eee;
     margin: 5px;
 }
 
