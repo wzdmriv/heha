@@ -13,5 +13,5 @@ var dbref = db.ref("/idList").child(room_id).child("config");
 dbref.on('value', (snapshot) =>{
     const data = snapshot.val();
     console.log("hello1");
-    console.log(data[0]);
+    console.log(data);
 });
