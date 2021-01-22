@@ -12,6 +12,16 @@ function getParam(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+function get_date(){
+    var get_date = db.ref("/get_date");
+    var newPostKey = get_date.push().key;
+    db.ref("/get_date").child(newPostKey).set(firebase.database.ServerValue.TIMESTAMP);
+    var data = 0;
+    get_date.child(newPostKey).once('value', (snapshot) =>{
+        data = snapshot.val();
+    });
+    return data;
+}
 
 function touchstart_he(){
     var he_button = document.getElementById("he_button");
@@ -20,9 +30,7 @@ function touchstart_he(){
 function touchend_he(){
     var he_button = document.getElementById("he_button");
     he_button.style.backgroundColor = "aquamarine";
-    var d = new Date();
-
-    db.ref("/idList").child(room_id).child("data").child(d.valueOf()).set(firebase.database.ServerValue.TIMESTAMP);
+    db.ref("/idList").child(room_id).child("data").child(get_date()).set(1);
 }
 
 function refresh_data(){
@@ -33,28 +41,15 @@ function refresh_data(){
             const time_list = Object.keys(data);
             console.log(time_list.length)
             var timer = function() {db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);}
-            var d = new Date();
-            if (Number(d) - Number(time_list[0]) > time_conf * 1000){
-                //db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);
+            var d = get_date();
+            if (d - Number(time_list[0]) > time_conf * 1000){
+                db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);
             }else{
-                setTimeout(timer, (time_conf * 1000) - Number(d) + Number(time_list[0]));
+                setTimeout(timer, (time_conf * 1000) - d + Number(time_list[0]));
             }
         }else{
             console.log(0)
         }
-    });
-}
-function tuning_delay(){
-    var tuning_delay = db.ref("/tuning_delay");
-    var newPostKey = tuning_delay.push().key;
-    var d = new Date();
-    db.ref("/tuning_delay").child(newPostKey).set(firebase.database.ServerValue.TIMESTAMP);
-    var tuning_ref = db.ref("/tuning_delay");
-    tuning_ref.child(newPostKey).once('value', (snapshot) =>{
-        const data = snapshot.val();
-        console.log("hello2");
-        alert(data);
-        alert(Number(d));
     });
 }
 
@@ -69,6 +64,5 @@ window.onload = function() {
     var he_button = document.getElementById("he_button");
     he_button.addEventListener("touchstart",touchstart_he);
     he_button.addEventListener("touchend",touchend_he);
-    tuning_delay();
     refresh_data();
 }
