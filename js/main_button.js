@@ -16,6 +16,7 @@ function touchend_he(){
     var he_button = document.getElementById("he_button");
     he_button.style.backgroundColor = "aquamarine";
     db.ref("/idList").child(room_id).child("data").set("hello");
+}
 
 window.onload = function() {
     var room_id = getParam('room_id');
@@ -29,5 +30,4 @@ window.onload = function() {
     var he_button = document.getElementById("he_button");
     he_button.addEventListener("touchstart",touchstart_he);
     he_button.addEventListener("touchend",touchend_he);
-
 }
