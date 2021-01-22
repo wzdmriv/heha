@@ -15,7 +15,7 @@ function touchstart_he(){
 function touchend_he(){
     var he_button = document.getElementById("he_button");
     he_button.style.backgroundColor = "aquamarine";
-    db.ref("/idList").child(room_id).child("data").doc().set("hoge");
+    db.ref("/idList").child(room_id).child("data").doc().set(ServerValue.TIMESTAMP);
 }
 
 window.onload = function() {
