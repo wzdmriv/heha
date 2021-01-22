@@ -28,7 +28,7 @@
         </div>
         <br><br>
         <div class = form>
-            <form name="form1">
+            <form name="form1" id="form1">
                 <h3>ルームID</h3>
                 <input type="text" id="room_id" value="" placeholder="半角英数字">
                 <h3>メールアドレス</h3>
@@ -42,6 +42,26 @@
                 <br><br>
                 <div id="img-qr"></div>
                 <img id="img-qr2">
+                <br><br>
+            </form>
+            <form name="form2" id="form2">
+                <h3>ルームID</h3>
+                <input type="text" id="room_id_2" value="" placeholder="半角英数字">
+                <br><br>
+                <input type="button" value="現在値取得" onclick="load_conf();"/>
+                <br><br><br>
+                <h3>1票の継続時間 [s]</h3>
+                <input type="text" id="time_conf" value="" placeholder="半角数字">
+                <h3>1票の重さ [%]</h3>
+                <input type="text" id="weight_conf" value="" placeholder="半角数字">
+                <h3>はぁボタン</h3>
+                <select name="heha" id=heha>
+                    <option value="">選択してください</option>
+                    <option value="enable">有効</option>
+                    <option value="disable">無効</option>
+                </select>
+                <br><br>
+                <input type="button" value="更新" onclick="update_conf();"/>
                 <br><br>
             </form>
             <br>

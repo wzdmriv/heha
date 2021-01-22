@@ -34,8 +34,7 @@ function he_color(weight){
 }
 
 function touchstart_he(){
-    var he_button = document.getElementById("he_button");
-    he_button.style.backgroundColor = "white";
+    document.getElementById("he_button").style.backgroundColor = "white";
 }
 function touchend_he(){
     he_color(he_number * weight_conf);

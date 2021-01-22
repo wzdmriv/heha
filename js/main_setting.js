@@ -1,6 +1,7 @@
 function genURL(){
     $(function(){
         var room_id = document.forms.form1.room_id.value;
+        document.getElementById( "room_id_2" ).value = room_id;
         var mail_address = document.forms.form1.mail_address.value;
         var url = "https://wzdmriv.github.io/heha/heha_button.html?room_id=" + room_id
         document.getElementById( "gend_url" ).value = url;
@@ -32,8 +33,36 @@ function genURL(){
 }
 
 function copyURL(){
-    var gend_url = document.getElementById( "gend_url" )
-    gend_url.select();
+    document.getElementById( "gend_url" ).select();
     document.execCommand("Copy");
     alert("コピー完了：" + gend_url.value);
+}
+
+function selectMode() {
+	var element = document.getElementById( "gen" ) ;
+	if ( element.checked ) {
+		document.getElementById("form2").style.display ="none";
+		document.getElementById("form1").style.display ="inline-block";
+	}else{
+		document.getElementById("form1").style.display ="none";
+		document.getElementById("form2").style.display ="inline-block";
+	}
+}
+
+function load_conf(){
+    var room_id = document.forms.form2.room_id_2.value;
+    var config_ref = db.ref("/idList").child(room_id).child("config");
+    config_ref.on('value', (snapshot) =>{
+        const data = snapshot.val();
+        document.getElementById( "time_conf" ).value = data.time;
+        document.getElementById( "weight_conf" ).value = data.weight;
+        document.getElementById( "heha" ).value = data.ha;
+    });
+}
+
+function update_conf(){
+    var room_id = document.forms.form2.room_id_2.value;
+    db.ref("/idList").child(room_id).child("config/time").set(Number(document.getElementById( "time_conf" ).value));
+    db.ref("/idList").child(room_id).child("config/weight").set(Number(document.getElementById( "weight_conf" ).value));
+    db.ref("/idList").child(room_id).child("config/ha").set(document.getElementById( "heha" ).value);
 }

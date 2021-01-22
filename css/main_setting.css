@@ -82,6 +82,19 @@ input[type="radio"]:checked + label {
     box-sizing: border-box;
     font-family: "M PLUS Rounded 1c","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ","Meiryo", Helvetica, SegoeUI, sans-serif;
 }
+select{
+    padding: 7px;
+    border-radius: 2px;
+    font-size: 17px;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: #ddd;
+    color: #222;
+    width: 200px;
+    box-sizing: border-box;
+    font-family: "M PLUS Rounded 1c","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","メイリオ","Meiryo", Helvetica, SegoeUI, sans-serif;
+    -webkit-appearance: none;
+}
 .select {
     display:inline-block;
     text-align: center;
@@ -94,13 +107,22 @@ input[type="radio"]:checked + label {
     margin:0px;
     width: 100%;
 }
-form{
+#form1{
     width: 400px;
     height: auto;
     border: 2px solid #eee;
     margin: 5px;
     margin-right:auto;
     margin-left:auto;
+}
+#form2{
+    width: 400px;
+    height: auto;
+    border: 2px solid #eee;
+    margin: 5px;
+    margin-right:auto;
+    margin-left:auto;
+    display:none;
 }
 
 @media (max-width: 400px) {
