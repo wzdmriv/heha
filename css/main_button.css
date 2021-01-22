@@ -13,7 +13,7 @@ body, html {
     height: 100%;
     border: 3px solid #fff;
     box-sizing: border-box;
-    background-color: aquamarine;
+    background-color: rgb(150, 255, 150);
     position: fixed;
 }
 

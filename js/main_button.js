@@ -22,14 +22,23 @@ function get_date(){
     db.ref("/get_date").child(newPostKey).set(null);
     return data;
 }
+function he_color(weight){
+    var he_button = document.getElementById("he_button");
+
+    if (0 <= weight < 100){
+        var color = "rgb(" + (150-weight*1.5) + ", 255, " + (150-weight*1.5) + ")";
+        he_button.style.backgroundColor = color;
+    }else if(weight>=100){
+
+    }
+}
 
 function touchstart_he(){
     var he_button = document.getElementById("he_button");
     he_button.style.backgroundColor = "white";
 }
 function touchend_he(){
-    var he_button = document.getElementById("he_button");
-    he_button.style.backgroundColor = "aquamarine";
+    he_color(he_number * weight_conf);
     db.ref("/idList").child(room_id).child("he_data").child(get_date()).set(1);
 }
 
@@ -39,7 +48,9 @@ function refresh_data(){
         const data = snapshot.val();
         if (data){
             const time_list = Object.keys(data);
-            console.log(time_list.length)
+            he_number = time_list.length;
+            console.log(he_number)
+            he_color(he_number * weight_conf);
             var timer = function() {db.ref("/idList").child(room_id).child("he_data").child(time_list[0]).set(null);}
             var d = get_date();
             if (d - Number(time_list[0]) > time_conf * 1000){
@@ -48,7 +59,9 @@ function refresh_data(){
                 setTimeout(timer, (time_conf * 1000) - d + Number(time_list[0]));
             }
         }else{
-            console.log(0)
+            he_number = 0;
+            console.log(he_number)
+            he_color(he_number * weight_conf);
         }
     });
 }
@@ -57,9 +70,8 @@ window.onload = function() {
     var config_ref = db.ref("/idList").child(room_id).child("config");
     config_ref.on('value', (snapshot) =>{
         const data = snapshot.val();
-        const data_json = Object.keys(data);
-        console.log("hello1");
-        console.log(data_json[0]);
+        time_conf = data.time;
+        weight_conf = data.weight;
     });
     var he_button = document.getElementById("he_button");
     he_button.addEventListener("touchstart",touchstart_he);
