@@ -9,10 +9,12 @@ function getParam(name, url) {
 }
 
 function touchstart_he(){
-    console.log("hello1");
+    var he_button = document.getElementById("he_button");
+    he_button.style.backgroundColor = "white";
 }
 function touchend_he(){
-    console.log("hello1");
+    var he_button = document.getElementById("he_button");
+    he_button.style.backgroundColor = "aquamarine";
 }
 
 window.onload = function() {
@@ -22,7 +24,7 @@ window.onload = function() {
         const data = snapshot.val();
         const data_json = Object.keys(data);
         console.log("hello1");
-        alert(data_json[0]);
+        console.log(data_json[0]);
     });
     var he_button = document.getElementById("he_button");
     he_button.addEventListener("touchstart",touchstart_he);
