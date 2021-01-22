@@ -1,7 +1,6 @@
 var room_id = getParam('room_id');
 var time_conf = 10;
 var weight_conf = 10;
-var delaytime = 0;
 var he_number = 0;
 function getParam(name, url) {
     if (!url) url = window.location.href;
@@ -20,6 +19,7 @@ function get_date(){
     get_date.child(newPostKey).once('value', (snapshot) =>{
         data = snapshot.val();
     });
+    db.ref("/get_date").child(newPostKey).set(null);
     return data;
 }
 
@@ -30,20 +30,20 @@ function touchstart_he(){
 function touchend_he(){
     var he_button = document.getElementById("he_button");
     he_button.style.backgroundColor = "aquamarine";
-    db.ref("/idList").child(room_id).child("data").child(get_date()).set(1);
+    db.ref("/idList").child(room_id).child("he_data").child(get_date()).set(1);
 }
 
 function refresh_data(){
-    var data_ref = db.ref("/idList").child(room_id).child("data");
+    var data_ref = db.ref("/idList").child(room_id).child("he_data");
     data_ref.on('value', (snapshot) =>{
         const data = snapshot.val();
         if (data){
             const time_list = Object.keys(data);
             console.log(time_list.length)
-            var timer = function() {db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);}
+            var timer = function() {db.ref("/idList").child(room_id).child("he_data").child(time_list[0]).set(null);}
             var d = get_date();
             if (d - Number(time_list[0]) > time_conf * 1000){
-                db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);
+                db.ref("/idList").child(room_id).child("he_data").child(time_list[0]).set(null);
             }else{
                 setTimeout(timer, (time_conf * 1000) - d + Number(time_list[0]));
             }
