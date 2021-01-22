@@ -16,3 +16,13 @@ body, html {
     background-color: aquamarine;
     position: fixed;
 }
+
+#ha_button{
+    width: 100%;
+    height: 100%;
+    border: 3px solid #fff;
+    box-sizing: border-box;
+    background-color: aquamarine;
+    position: fixed;
+    display: none;
+}
