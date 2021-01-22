@@ -1,7 +1,7 @@
 var room_id = getParam('room_id');
 var time_conf = 10;
 var weight_conf = 10;
-var 
+var he_number = 0;
 function getParam(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
