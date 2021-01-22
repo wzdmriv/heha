@@ -126,7 +126,12 @@ select{
 }
 
 @media (max-width: 400px) {
-    form{
+    #form1{
+        width: 95%;
+        border: 2px solid #ddd;
+        margin: 5px;
+    }
+    #form2{
         width: 95%;
         border: 2px solid #ddd;
         margin: 5px;
