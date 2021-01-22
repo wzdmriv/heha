@@ -1,3 +1,4 @@
+var room_id = getParam('room_id');
 function getParam(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -15,11 +16,10 @@ function touchstart_he(){
 function touchend_he(){
     var he_button = document.getElementById("he_button");
     he_button.style.backgroundColor = "aquamarine";
-    db.ref("/idList").child(room_id).child("data").set("hello");
+    db.ref("/idList").child(room_id).child("data").set(ServerValue.TIMESTAMP);
 }
 
 window.onload = function() {
-    var room_id = getParam('room_id');
     var dbref = db.ref("/idList").child(room_id).child("config");
     dbref.on('value', (snapshot) =>{
         const data = snapshot.val();
