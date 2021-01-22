@@ -30,4 +30,4 @@ window.onload = function() {
     he_button.addEventListener("touchstart",touchstart_he);
     he_button.addEventListener("touchend",touchend_he);
 
-};
+}
