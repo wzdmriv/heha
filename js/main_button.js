@@ -1,6 +1,7 @@
 var room_id = getParam('room_id');
 var time_conf = 10;
 var weight_conf = 10;
+var 
 function getParam(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -21,12 +22,14 @@ function touchend_he(){
     var d = new Date();
     db.ref("/idList").child(room_id).child("data").child(d.valueOf()).set("1");
 }
+
 function refresh_data(){
     var data_ref = db.ref("/idList").child(room_id).child("data");
     data_ref.on('value', (snapshot) =>{
         const data = snapshot.val();
         if (data){
             const time_list = Object.keys(data);
+            console.log(time_list.length)
             var timer = function() {db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);}
             var d = new Date();
             if (Number(d) - Number(time_list[0]) > time_conf * 1000){
@@ -34,6 +37,8 @@ function refresh_data(){
             }else{
                 setTimeout(timer, (time_conf * 1000) - Number(d) + Number(time_list[0]));
             }
+        }else{
+            console.log(0)
         }
     });
 }
