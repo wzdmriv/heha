@@ -1,6 +1,7 @@
 var room_id = getParam('room_id');
 var time_conf = 10;
 var weight_conf = 10;
+var delaytime = 0;
 var he_number = 0;
 function getParam(name, url) {
     if (!url) url = window.location.href;
@@ -20,7 +21,8 @@ function touchend_he(){
     var he_button = document.getElementById("he_button");
     he_button.style.backgroundColor = "aquamarine";
     var d = new Date();
-    db.ref("/idList").child(room_id).child("data").child(d.valueOf()).set("1");
+
+    db.ref("/idList").child(room_id).child("data").child(d.valueOf()).set(firebase.database.ServerValue.TIMESTAMP);
 }
 
 function refresh_data(){
@@ -33,13 +35,26 @@ function refresh_data(){
             var timer = function() {db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);}
             var d = new Date();
             if (Number(d) - Number(time_list[0]) > time_conf * 1000){
-                db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);
+                //db.ref("/idList").child(room_id).child("data").child(time_list[0]).set(null);
             }else{
                 setTimeout(timer, (time_conf * 1000) - Number(d) + Number(time_list[0]));
             }
         }else{
             console.log(0)
         }
+    });
+}
+function tuning_delay(){
+    var tuning_delay = db.ref("/tuning_delay");
+    var newPostKey = tuning_delay.push().key;
+    var d = new Date();
+    db.ref("/tuning_delay").child(newPostKey).set(firebase.database.ServerValue.TIMESTAMP);
+    var tuning_ref = db.ref("/tuning_delay");
+    tuning_ref.child(newPostKey).once('value', (snapshot) =>{
+        const data = snapshot.val();
+        console.log("hello2");
+        alert(data);
+        alert(Number(d));
     });
 }
 
@@ -54,5 +69,6 @@ window.onload = function() {
     var he_button = document.getElementById("he_button");
     he_button.addEventListener("touchstart",touchstart_he);
     he_button.addEventListener("touchend",touchend_he);
+    tuning_delay();
     refresh_data();
 }
