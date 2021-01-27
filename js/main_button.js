@@ -1,7 +1,13 @@
 var room_id = getParam('room_id');
 var time_conf = 10;
 var weight_conf = 10;
+var heha = "";
 var he_number = 0;
+var ha_number = 0;
+var he_flag = 0;
+var ha_flag = 0;
+
+//URLからroom_idを取得
 function getParam(name, url) {
     if (!url) url = window.location.href;
     name = name.replace(/[\[\]]/g, "\\$&");
@@ -11,6 +17,8 @@ function getParam(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+//Firebaseサーバーから現在地を取得
 function get_date(){
     var get_date = db.ref("/get_date");
     var newPostKey = get_date.push().key;
@@ -22,17 +30,42 @@ function get_date(){
     db.ref("/get_date").child(newPostKey).set(null);
     return data;
 }
+
+//背景色更新
 function he_color(weight){
     var he_button = document.getElementById("he_button");
-
-    if (0 <= weight < 100){
+    if (0<=weight && weight<100){
+        he_flag = 0;
         var color = "rgb(" + (150-weight*1.5) + ", 255, " + (150-weight*1.5) + ")";
         he_button.style.backgroundColor = color;
     }else if(weight>=100){
-
+        he_flag = 1;
+        var interval = setInterval(function(){
+            $('#he_button').fadeOut(300,function(){$(this).fadeIn(300)});
+            if (he_flag == 0){
+                clearInterval(interval);
+            }
+        },600);
+    }
+}
+function ha_color(weight){
+    var ha_button = document.getElementById("ha_button");
+    if (0<=weight && weight<100){
+        ha_flag = 0;
+        var color = "rgb(255, " + (150-weight*1.5) + ", " + (150-weight*1.5) + ")";
+        ha_button.style.backgroundColor = color;
+    }else if(weight>=100){
+        ha_flag = 1;
+        var interval = setInterval(function(){
+            $('#ha_button').fadeOut(300,function(){$(this).fadeIn(300)});
+            if (ha_flag == 0){
+                clearInterval(interval);
+            }
+        },600);
     }
 }
 
+//
 function touchstart_he(){
     document.getElementById("he_button").style.backgroundColor = "white";
 }
@@ -40,8 +73,15 @@ function touchend_he(){
     he_color(he_number * weight_conf);
     db.ref("/idList").child(room_id).child("he_data").child(get_date()).set(1);
 }
+function touchstart_ha(){
+    document.getElementById("ha_button").style.backgroundColor = "white";
+}
+function touchend_ha(){
+    ha_color(ha_number * weight_conf);
+    db.ref("/idList").child(room_id).child("ha_data").child(get_date()).set(1);
+}
 
-function refresh_data(){
+function refresh_data_he(){
     var data_ref = db.ref("/idList").child(room_id).child("he_data");
     data_ref.on('value', (snapshot) =>{
         const data = snapshot.val();
@@ -65,15 +105,82 @@ function refresh_data(){
     });
 }
 
-window.onload = function() {
-    var config_ref = db.ref("/idList").child(room_id).child("config");
-    config_ref.on('value', (snapshot) =>{
+function refresh_data_ha(){
+    var data_ref = db.ref("/idList").child(room_id).child("ha_data");
+    data_ref.on('value', (snapshot) =>{
         const data = snapshot.val();
-        time_conf = data.time;
-        weight_conf = data.weight;
+        if (data){
+            const time_list = Object.keys(data);
+            ha_number = time_list.length;
+            console.log(ha_number)
+            ha_color(ha_number * weight_conf);
+            var timer = function() {db.ref("/idList").child(room_id).child("ha_data").child(time_list[0]).set(null);}
+            var d = get_date();
+            if (d - Number(time_list[0]) > time_conf * 1000){
+                db.ref("/idList").child(room_id).child("ha_data").child(time_list[0]).set(null);
+            }else{
+                setTimeout(timer, (time_conf * 1000) - d + Number(time_list[0]));
+            }
+        }else{
+            ha_number = 0;
+            console.log(ha_number)
+            ha_color(ha_number * weight_conf);
+        }
     });
+}
+
+function heha_layout(){
+    var ww = window.innerWidth;
+    if (heha=="disable"){
+        $('#ha_button').css({
+            'display':'none'
+        });
+        $('.hehabutton').css({
+            'height':'100vh'
+        });
+    }else if(ww>500){
+        $('#ha_button').css({
+            'display':'flex'
+        });
+        $('.hehabutton').css({
+            'height':'100vh'
+        });
+    }else{
+        console.log("hi")
+        $('#ha_button').css({
+            'display':'flex'
+        });
+        $('.hehabutton').css({
+            'height':'50vh'
+        });
+    }
+}
+
+window.onload = function() {
+    if (room_id==""){
+        alert("このURLは存在しません");
+    }else{
+        var config_ref = db.ref("/idList").child(room_id).child("config");
+        config_ref.on('value', (snapshot) =>{
+            const data = snapshot.val();
+            if(data){
+                time_conf = data.time;
+                weight_conf = data.weight;
+                heha = data.ha;
+                heha_layout();
+            }else{
+                alert("このURLは存在しません");
+            }
+        });
+    }
     var he_button = document.getElementById("he_button");
     he_button.addEventListener("touchstart",touchstart_he);
     he_button.addEventListener("touchend",touchend_he);
-    refresh_data();
+    refresh_data_he();
+    var a = document.getElementById("ha_button");
+    ha_button.addEventListener("touchstart",touchstart_ha);
+    ha_button.addEventListener("touchend",touchend_ha);
+    refresh_data_ha();
 }
+
+$(window).resize(heha_layout);

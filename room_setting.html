@@ -30,10 +30,11 @@
         <div class = form>
             <form name="form1" id="form1">
                 <h2>ルームID</h2>
-                <input type="text" id="room_id" value="" placeholder="半角英数字">
+                <input type="text" id="room_id" value="" placeholder="半角英数">
                 <h2>メールアドレス</h2>
-                <input type="text" id="mail_address" value="" placeholder="半角英数字">
+                <input type="text" id="mail_address" value="" placeholder="email">
                 <br><br>
+                <div id="errorbox"></div>
                 <input type="button" value="URL生成" onclick="genURL();"/>
                 <br><br><br>
                 <input type="text" id="gend_url" value="" placeholder="生成URL">
@@ -48,6 +49,7 @@
                 <h2>ルームID</h2>
                 <input type="text" id="room_id_2" value="" placeholder="半角英数字">
                 <br><br>
+                <div id="errorbox2"></div>
                 <input type="button" value="現在値取得" onclick="load_conf();"/>
                 <br><br><br>
                 <h2>1票の継続時間 [s]</h2>
@@ -61,6 +63,7 @@
                     <option value="disable">無効</option>
                 </select>
                 <br><br>
+                <div id="errorbox3"></div>
                 <input type="button" value="更新" onclick="update_conf();"/>
                 <br><br>
             </form>
