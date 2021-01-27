@@ -173,6 +173,7 @@ function heha_layout(){
 
 //初回実行
 window.onload = function() {
+    var nos_flag = 0;
     if (room_id==""){
         alert("このURLは存在しません");
     }else{
@@ -185,17 +186,20 @@ window.onload = function() {
                 heha = data.ha;
                 heha_layout();
                 $(window).resize(heha_layout);
-                nosleep_id = document.getElementById("nosleep_id");
-                nosleep_id.innerHTML = "room_id："+room_id;
-                //スリープ防止機能起動用ウィンドウ
-                var noSleep = new NoSleep();
-                $("#modal_overlay").fadeIn("fast");
-                $("#nosleep_conf").fadeIn("fast");
-                $("#close_nosleep").unbind().click(function(){
-                    noSleep.enable();
-                    $("#nosleep_conf").fadeOut("fast");
-                    $("#modal_overlay").fadeOut("fast");
-                });
+                if (nos_flag == 0){
+                    nosleep_id = document.getElementById("nosleep_id");
+                    nosleep_id.innerHTML = "room_id："+room_id;
+                    //スリープ防止機能起動用ウィンドウ
+                    var noSleep = new NoSleep();
+                    $("#modal_overlay").fadeIn("fast");
+                    $("#nosleep_conf").fadeIn("fast");
+                    $("#close_nosleep").unbind().click(function(){
+                        noSleep.enable();
+                        $("#nosleep_conf").fadeOut("fast");
+                        $("#modal_overlay").fadeOut("fast");
+                    });
+                    nos_flag = 1;
+                }
             }else{
                 alert("このURLは存在しません");
             }
