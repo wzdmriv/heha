@@ -40,6 +40,8 @@ function he_color(weight){
         he_button.style.backgroundColor = color;
     }else if(weight>=100){
         he_flag = 1;
+        var color = "rgb(255, 0, 0)";
+        he_button.style.backgroundColor = color;
         var interval = setInterval(function(){
             $('#he_button').fadeOut(300,function(){$(this).fadeIn(300)});
             if (he_flag == 0){
@@ -56,6 +58,8 @@ function ha_color(weight){
         ha_button.style.backgroundColor = color;
     }else if(weight>=100){
         ha_flag = 1;
+        var color = "rgb(255, 0, 0)";
+        ha_button.style.backgroundColor = color;
         var interval = setInterval(function(){
             $('#ha_button').fadeOut(300,function(){$(this).fadeIn(300)});
             if (ha_flag == 0){
