@@ -193,7 +193,7 @@ window.onload = function() {
                 $("#close_nosleep").unbind().click(function(){
                     noSleep.enable();
                     $("#nosleep_conf").fadeOut("fast",function(){});
-                    $("#modal_overlay").remove();
+                    $("#modal_overlay").fadeOut();
                 });
             }else{
                 alert("このURLは存在しません");
