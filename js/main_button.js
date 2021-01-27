@@ -135,27 +135,27 @@ function refresh_data_ha(){
 
 function heha_layout(){
     var ww = window.innerWidth;
+    var hh = window.innerHeight;
     if (heha=="disable"){
         $('#ha_button').css({
             'display':'none'
         });
         $('.hehabutton').css({
-            'height':'100vh'
+            'height':hh + "px"
         });
     }else if(ww>500){
         $('#ha_button').css({
             'display':'flex'
         });
         $('.hehabutton').css({
-            'height':'100vh'
+            'height':hh + "px"
         });
     }else{
-        console.log("hi")
         $('#ha_button').css({
             'display':'flex'
         });
         $('.hehabutton').css({
-            'height':'50vh'
+            'height':(hh/2) + "px"
         });
     }
 }
