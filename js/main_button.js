@@ -78,7 +78,7 @@ function touchend_he(){
     var millisec = get_date();
     var date = new Date(millisec);
     db.ref("/idList").child(room_id).child("he_data_temp").child(millisec).set(1);
-    db.ref("/idList").child(room_id).child("he_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)).child(millisec).set(1);
+    db.ref("/idList").child(room_id).child("he_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)).child(millisec).set({time:time_conf,weight:weight_conf});
 }
 function touchstart_ha(){
     document.getElementById("ha_button").style.backgroundColor = "#C0C0C0";
@@ -88,7 +88,7 @@ function touchend_ha(){
     var millisec = get_date();
     var date = new Date(millisec);
     db.ref("/idList").child(room_id).child("ha_data_temp").child(millisec).set(1);
-    db.ref("/idList").child(room_id).child("ha_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)).child(millisec).set(1);
+    db.ref("/idList").child(room_id).child("ha_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)).child(millisec).set({time:time_conf,weight:weight_conf});
 }
 
 //へぇはぁ蓄積数データベース更新
