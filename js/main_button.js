@@ -69,24 +69,31 @@ function ha_color(weight){
     }
 }
 
-//
+//タッチ時実行タスク
 function touchstart_he(){
-    document.getElementById("he_button").style.backgroundColor = "white";
+    document.getElementById("he_button").style.backgroundColor = "#C0C0C0";
 }
 function touchend_he(){
     he_color(he_number * weight_conf);
-    db.ref("/idList").child(room_id).child("he_data").child(get_date()).set(1);
+    var millisec = get_date();
+    var date = new Date(millisec);
+    db.ref("/idList").child(room_id).child("he_data_temp").child(millisec).set(1);
+    db.ref("/idList").child(room_id).child("he_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)).child(millisec).set(1);
 }
 function touchstart_ha(){
-    document.getElementById("ha_button").style.backgroundColor = "white";
+    document.getElementById("ha_button").style.backgroundColor = "#C0C0C0";
 }
 function touchend_ha(){
     ha_color(ha_number * weight_conf);
-    db.ref("/idList").child(room_id).child("ha_data").child(get_date()).set(1);
+    var millisec = get_date();
+    var date = new Date(millisec);
+    db.ref("/idList").child(room_id).child("ha_data_temp").child(millisec).set(1);
+    db.ref("/idList").child(room_id).child("ha_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)).child(millisec).set(1);
 }
 
+//へぇはぁ蓄積数データベース更新
 function refresh_data_he(){
-    var data_ref = db.ref("/idList").child(room_id).child("he_data");
+    var data_ref = db.ref("/idList").child(room_id).child("he_data_temp");
     data_ref.on('value', (snapshot) =>{
         const data = snapshot.val();
         if (data){
@@ -94,10 +101,10 @@ function refresh_data_he(){
             he_number = time_list.length;
             console.log(he_number)
             he_color(he_number * weight_conf);
-            var timer = function() {db.ref("/idList").child(room_id).child("he_data").child(time_list[0]).set(null);}
+            var timer = function() {db.ref("/idList").child(room_id).child("he_data_temp").child(time_list[0]).set(null);}
             var d = get_date();
             if (d - Number(time_list[0]) > time_conf * 1000){
-                db.ref("/idList").child(room_id).child("he_data").child(time_list[0]).set(null);
+                db.ref("/idList").child(room_id).child("he_data_temp").child(time_list[0]).set(null);
             }else{
                 setTimeout(timer, (time_conf * 1000) - d + Number(time_list[0]));
             }
@@ -108,9 +115,8 @@ function refresh_data_he(){
         }
     });
 }
-
 function refresh_data_ha(){
-    var data_ref = db.ref("/idList").child(room_id).child("ha_data");
+    var data_ref = db.ref("/idList").child(room_id).child("ha_data_temp");
     data_ref.on('value', (snapshot) =>{
         const data = snapshot.val();
         if (data){
@@ -118,10 +124,10 @@ function refresh_data_ha(){
             ha_number = time_list.length;
             console.log(ha_number)
             ha_color(ha_number * weight_conf);
-            var timer = function() {db.ref("/idList").child(room_id).child("ha_data").child(time_list[0]).set(null);}
+            var timer = function() {db.ref("/idList").child(room_id).child("ha_data_temp").child(time_list[0]).set(null);}
             var d = get_date();
             if (d - Number(time_list[0]) > time_conf * 1000){
-                db.ref("/idList").child(room_id).child("ha_data").child(time_list[0]).set(null);
+                db.ref("/idList").child(room_id).child("ha_data_temp").child(time_list[0]).set(null);
             }else{
                 setTimeout(timer, (time_conf * 1000) - d + Number(time_list[0]));
             }
@@ -133,6 +139,7 @@ function refresh_data_ha(){
     });
 }
 
+//ウィンドウレイアウト更新
 function heha_layout(){
     var ww = window.innerWidth;
     var hh = window.innerHeight;
@@ -160,6 +167,7 @@ function heha_layout(){
     }
 }
 
+//初回実行
 window.onload = function() {
     if (room_id==""){
         alert("このURLは存在しません");
@@ -172,6 +180,7 @@ window.onload = function() {
                 weight_conf = data.weight;
                 heha = data.ha;
                 heha_layout();
+                $(window).resize(heha_layout);
             }else{
                 alert("このURLは存在しません");
             }
@@ -186,5 +195,3 @@ window.onload = function() {
     ha_button.addEventListener("touchend",touchend_ha);
     refresh_data_ha();
 }
-
-$(window).resize(heha_layout);
