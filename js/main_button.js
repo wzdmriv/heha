@@ -40,7 +40,7 @@ function he_color(weight){
         he_button.style.backgroundColor = color;
     }else if(weight>=100){
         he_flag = 1;
-        var color = "rgb(255, 0, 0)";
+        var color = "rgb(0, 255, 0)";
         he_button.style.backgroundColor = color;
         var interval = setInterval(function(){
             $('#he_button').fadeOut(300,function(){$(this).fadeIn(300)});
