@@ -43,11 +43,11 @@ function he_color(weight){
         var color = "rgb(0, 255, 0)";
         he_button.style.backgroundColor = color;
         var interval = setInterval(function(){
-            $('#he_button').fadeOut(300,function(){$(this).fadeIn(300)});
+            $('#he_button').fadeOut(200,function(){$(this).fadeIn(200)});
             if (he_flag == 0){
                 clearInterval(interval);
             }
-        },600);
+        },400);
     }
 }
 function ha_color(weight){
@@ -61,11 +61,11 @@ function ha_color(weight){
         var color = "rgb(255, 0, 0)";
         ha_button.style.backgroundColor = color;
         var interval = setInterval(function(){
-            $('#ha_button').fadeOut(300,function(){$(this).fadeIn(300)});
+            $('#ha_button').fadeOut(200,function(){$(this).fadeIn(200)});
             if (ha_flag == 0){
                 clearInterval(interval);
             }
-        },600);
+        },400);
     }
 }
 
