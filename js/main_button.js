@@ -189,11 +189,12 @@ window.onload = function() {
                 nosleep_id.innerHTML = "room_id："+room_id;
                 //スリープ防止機能起動用ウィンドウ
                 var noSleep = new NoSleep();
+                $("#modal_overlay").fadeIn("fast");
                 $("#nosleep_conf").fadeIn("fast");
                 $("#close_nosleep").unbind().click(function(){
                     noSleep.enable();
-                    $("#nosleep_conf").fadeOut("fast",function(){});
-                    $("#modal_overlay").fadeOut();
+                    $("#nosleep_conf").fadeOut("fast");
+                    $("#modal_overlay").fadeOut("fast");
                 });
             }else{
                 alert("このURLは存在しません");
