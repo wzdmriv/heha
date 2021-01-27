@@ -9,6 +9,7 @@
         <script type="text/javascript" src="js/config.js"></script>
         <script type="text/javascript" src="js/firebase.js"></script>
         <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/NoSleep_min.js"></script>
         <script type="text/javascript" src="js/main_button.js"></script>
         <link rel="stylesheet" href="css/main_button.css">
         <title>heha_button</title>
@@ -17,10 +18,17 @@
 
     <body>
         <div class="wrapper">
-            <div id="he_button" class="hehabutton">
+            <div id="he_button" class="hehabutton" onclick="touchend_he();">
             </div>
-            <div id="ha_button" class="hehabutton">
+            <div id="ha_button" class="hehabutton" onclick="touchend_ha();">
             </div>
+        </div>
+        <div id="modal_overlay"></div>
+        <div id="nosleep_conf">
+            <h3 id="nosleep_id"></h3>
+            <br>
+            <input type="button" value="開始" id="close_nosleep"/>
+            <br><br>
         </div>
     </body>
 

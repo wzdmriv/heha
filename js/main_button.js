@@ -78,7 +78,7 @@ function touchend_he(){
     var millisec = get_date();
     var date = new Date(millisec);
     db.ref("/idList").child(room_id).child("he_data_temp").child(millisec).set(1);
-    db.ref("/idList").child(room_id).child("he_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)).child(millisec).set({time:time_conf,weight:weight_conf});
+    db.ref("/idList").child(room_id).child("he_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)+"-t"+time_conf+"-w"+weight_conf).child(millisec).set(1);
 }
 function touchstart_ha(){
     document.getElementById("ha_button").style.backgroundColor = "#C0C0C0";
@@ -88,7 +88,7 @@ function touchend_ha(){
     var millisec = get_date();
     var date = new Date(millisec);
     db.ref("/idList").child(room_id).child("ha_data_temp").child(millisec).set(1);
-    db.ref("/idList").child(room_id).child("ha_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)).child(millisec).set({time:time_conf,weight:weight_conf});
+    db.ref("/idList").child(room_id).child("ha_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)+"-t"+time_conf+"-w"+weight_conf).child(millisec).set(1);
 }
 
 //へぇはぁ蓄積数データベース更新
@@ -143,6 +143,10 @@ function refresh_data_ha(){
 function heha_layout(){
     var ww = window.innerWidth;
     var hh = window.innerHeight;
+    var cw = $("#nosleep_conf").outerWidth();
+    var ch = $("#nosleep_conf").outerHeight();
+    $("#nosleep_conf").css( {"left": ((ww - cw)/2) + "px","top": ((hh - ch)/2) + "px"} ) ;
+
     if (heha=="disable"){
         $('#ha_button').css({
             'display':'none'
@@ -181,11 +185,23 @@ window.onload = function() {
                 heha = data.ha;
                 heha_layout();
                 $(window).resize(heha_layout);
+                nosleep_id = document.getElementById("nosleep_id");
+                nosleep_id.innerHTML = "room_id："+room_id;
+                //スリープ防止機能起動用ウィンドウ
+                var noSleep = new NoSleep();
+                $("#nosleep_conf").fadeIn("fast");
+                $("#close_nosleep").unbind().click(function(){
+                    noSleep.enable();
+                    $("#nosleep_conf").fadeOut("fast",function(){});
+                    $("#modal_overlay").remove();
+                });
             }else{
                 alert("このURLは存在しません");
             }
         });
     }
+    heha_layout();
+
     var he_button = document.getElementById("he_button");
     he_button.addEventListener("touchstart",touchstart_he);
     he_button.addEventListener("touchend",touchend_he);
