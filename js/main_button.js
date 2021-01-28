@@ -173,6 +173,7 @@ function heha_layout(){
 
 //初回実行
 window.onload = function() {
+    //データ読み込み
     var nos_flag = 0;
     if (room_id==""){
         alert("このURLは存在しません");
@@ -205,14 +206,21 @@ window.onload = function() {
             }
         });
     }
-    heha_layout();
 
+    //タッチデバイス対応
     var he_button = document.getElementById("he_button");
-    he_button.addEventListener("touchstart",touchstart_he);
-    he_button.addEventListener("touchend",touchend_he);
+    var ha_button = document.getElementById("ha_button");
+    if('ontouchstart' in document){
+        he_button.addEventListener("touchstart",touchstart_he);
+        he_button.addEventListener("touchend",touchend_he);
+        ha_button.addEventListener("touchstart",touchstart_ha);
+        ha_button.addEventListener("touchend",touchend_ha);
+    }else{
+        he_button.addEventListener("mousedown",touchstart_he);
+        he_button.addEventListener("mouseup",touchend_he);
+        ha_button.addEventListener("mousedown",touchstart_ha);
+        ha_button.addEventListener("mouseup",touchend_ha);
+    }
     refresh_data_he();
-    var a = document.getElementById("ha_button");
-    ha_button.addEventListener("touchstart",touchstart_ha);
-    ha_button.addEventListener("touchend",touchend_ha);
     refresh_data_ha();
 }
