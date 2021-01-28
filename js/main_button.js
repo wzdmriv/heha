@@ -154,21 +154,22 @@ function heha_layout(){
         $('.hehabutton').css({
             'height':hh + "px"
         });
-    }else if(ww>500){
-        $('#ha_button').css({
-            'display':'flex'
-        });
-        $('.hehabutton').css({
+    }else if(ww>500){$('.hehabutton').css({
             'height':hh + "px"
         });
-    }else{
-        $('#ha_button').css({
-            'display':'flex'
-        });
-        $('.hehabutton').css({
+    }else{$('.hehabutton').css({
             'height':(hh/2) + "px"
         });
     }
+    var he_w =  document.getElementById( "he_button" ).clientWidth;
+    var he_h =  document.getElementById( "he_button" ).clientHeight;
+    var ha_w =  document.getElementById( "ha_button" ).clientWidth;
+    var ha_h =  document.getElementById( "ha_button" ).clientHeight;
+    var he_size = parseInt(Math.min(he_w,he_h)*0.5);
+    var ha_size = parseInt(Math.min(ha_w,ha_h)*0.5);
+    console.log(he_size)
+    $('#he_button').css({'font-size':he_size+'px','line-height':he_h+'px'});
+    $('#ha_button').css({'font-size':ha_size+'px','line-height':ha_h+'px'});
 }
 
 //初回実行
