@@ -99,7 +99,8 @@ function refresh_data_he(){
         if (data){
             const time_list = Object.keys(data);
             he_number = time_list.length;
-            console.log(he_number)
+            he_label = document.getElementById("he_button");
+            he_label.innerHTML = he_number;
             he_color(he_number * weight_conf);
             var timer = function() {db.ref("/idList").child(room_id).child("he_data_temp").child(time_list[0]).set(null);}
             var d = get_date();
@@ -110,7 +111,8 @@ function refresh_data_he(){
             }
         }else{
             he_number = 0;
-            console.log(he_number)
+            he_label = document.getElementById("he_button");
+            he_label.innerHTML = he_number;
             he_color(he_number * weight_conf);
         }
     });
@@ -122,7 +124,8 @@ function refresh_data_ha(){
         if (data){
             const time_list = Object.keys(data);
             ha_number = time_list.length;
-            console.log(ha_number)
+            ha_label = document.getElementById("ha_button");
+            ha_label.innerHTML = ha_number;
             ha_color(ha_number * weight_conf);
             var timer = function() {db.ref("/idList").child(room_id).child("ha_data_temp").child(time_list[0]).set(null);}
             var d = get_date();
@@ -133,7 +136,8 @@ function refresh_data_ha(){
             }
         }else{
             ha_number = 0;
-            console.log(ha_number)
+            ha_label = document.getElementById("ha_button");
+            ha_label.innerHTML = ha_number;
             ha_color(ha_number * weight_conf);
         }
     });
