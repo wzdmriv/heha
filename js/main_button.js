@@ -172,7 +172,6 @@ function heha_layout(){
     var ha_h =  document.getElementById( "ha_button" ).clientHeight;
     var he_size = parseInt(Math.min(he_w,he_h)*0.5);
     var ha_size = parseInt(Math.min(ha_w,ha_h)*0.5);
-    console.log(he_size)
     $('#he_button').css({'font-size':he_size+'px','line-height':he_h+'px'});
     $('#ha_button').css({'font-size':ha_size+'px','line-height':ha_h+'px'});
 }
