@@ -61,6 +61,7 @@ function ha_color(weight){
         var color = "rgb(255, 0, 0)";
         ha_button.style.backgroundColor = color;
         var interval = setInterval(function(){
+            navigator.vibrate(200);
             $('#ha_button').fadeOut(200,function(){$(this).fadeIn(200)});
             if (ha_flag == 0){
                 clearInterval(interval);
