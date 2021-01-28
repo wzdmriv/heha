@@ -45,6 +45,7 @@ input[type="button"]:focus {
     box-sizing: border-box;
     align-items: flex-end;
     text-align: center;
+    touch-action: manipulation;
 }
 
 .wrapper{
