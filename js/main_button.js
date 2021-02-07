@@ -72,7 +72,7 @@ function ha_color(weight){
 
 //タッチ時実行タスク
 function touchstart_he(){
-    document.getElementById("he_button").style.backgroundColor = "#C0C0C0";
+    document.getElementById("he_button").style.backgroundColor = "#cec";
 }
 function touchend_he(){
     he_color(he_number * weight_conf);
@@ -82,7 +82,7 @@ function touchend_he(){
     db.ref("/idList").child(room_id).child("he_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)+"-t"+time_conf+"-w"+weight_conf).child(millisec).set(1);
 }
 function touchstart_ha(){
-    document.getElementById("ha_button").style.backgroundColor = "#C0C0C0";
+    document.getElementById("ha_button").style.backgroundColor = "#c99";
 }
 function touchend_ha(){
     ha_color(ha_number * weight_conf);
