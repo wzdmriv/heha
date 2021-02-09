@@ -82,7 +82,7 @@ function touchend_he(){
     db.ref("/idList").child(room_id).child("he_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)+"-t"+time_conf+"-w"+weight_conf).child(millisec).set(1);
 }
 function touchstart_ha(){
-    document.getElementById("ha_button").style.backgroundColor = "#c99";
+    document.getElementById("ha_button").style.backgroundColor = "#ecc";
 }
 function touchend_ha(){
     ha_color(ha_number * weight_conf);
