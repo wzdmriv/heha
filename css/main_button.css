@@ -41,7 +41,7 @@ input[type="button"]:focus {
     margin:0px;
     color:rgba(255,255,255,0.6);
     vertical-align: middle;
-    border: 3px solid #eee;
+    border: 3px solid #fff;
     border-radius: 30px;
     box-sizing: border-box;
     align-items: flex-end;

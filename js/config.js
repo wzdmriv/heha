@@ -1,8 +1,9 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyDPU9pOE1gYXsOXk0RYGHDGAtUARCFnFEU",
-  authDomain: "heha-defe1.firebaseapp.com",
-  projectId: "heha-defe1",
-  storageBucket: "heha-defe1.appspot.com",
-  messagingSenderId: "231036083878",
-  appId: "1:231036083878:web:5a4339b002280a71471e67"
+  apiKey: "AIzaSyCmrzLVpzSkD46uNG7iTPJxjUKjDadlKY8",
+  authDomain: "heha-button.firebaseapp.com",
+  databaseURL: "https://heha-button-default-rtdb.firebaseio.com",
+  projectId: "heha-button",
+  storageBucket: "heha-button.appspot.com",
+  messagingSenderId: "761839877939",
+  appId: "1:761839877939:web:2cf37002cc9e1eb1b78846"
 };
