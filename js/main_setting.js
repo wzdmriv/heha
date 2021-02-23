@@ -43,7 +43,9 @@ function genURL(){
                     $("#img-qr").html('');
                     $("#img-qr1").html('');
                     $("#img-qr2").attr("src",img_src);
-                    
+                    $("#qr_dl").attr("href",img_src);
+                    $("#qr_dl").attr("download",room_id+".png");
+                    $("#qr_dl").fadeIn("fast");
                     //データベース登録
                     db.ref("/idList").child(room_id).child("config").set({mail:mail_address,time:10,weight:10,ha:"disable"});
                     errorbox = document.getElementById("errorbox");

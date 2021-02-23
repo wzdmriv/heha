@@ -124,6 +124,9 @@ select{
     margin-left:auto;
     display:none;
 }
+#qr_dl{
+    display: none;
+}
 
 @media (max-width: 400px) {
     #form1{
