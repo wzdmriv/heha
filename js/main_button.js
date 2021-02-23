@@ -34,6 +34,7 @@ function get_date(){
 //背景色更新
 function he_color(weight){
     var he_button = document.getElementById("he_button");
+    he_button.style.opacity = "1";
     if (0<=weight && weight<100){
         he_flag = 0;
         var color = "rgb(" + (150-weight*1.5) + ", 255, " + (150-weight*1.5) + ")";
@@ -52,6 +53,7 @@ function he_color(weight){
 }
 function ha_color(weight){
     var ha_button = document.getElementById("ha_button");
+    ha_button.style.opacity = "1";
     if (0<=weight && weight<100){
         ha_flag = 0;
         var color = "rgb(255, " + (150-weight*1.5) + ", " + (150-weight*1.5) + ")";
@@ -72,7 +74,7 @@ function ha_color(weight){
 
 //タッチ時実行タスク
 function touchstart_he(){
-    document.getElementById("he_button").style.backgroundColor = "#cec";
+    document.getElementById("he_button").style.opacity = "0.8";
 }
 function touchend_he(){
     he_color(he_number * weight_conf);
@@ -82,7 +84,7 @@ function touchend_he(){
     db.ref("/idList").child(room_id).child("he_data").child(date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)+"-t"+time_conf+"-w"+weight_conf).child(millisec).set(1);
 }
 function touchstart_ha(){
-    document.getElementById("ha_button").style.backgroundColor = "#ecc";
+    document.getElementById("ha_button").style.opacity = "0.9";
 }
 function touchend_ha(){
     ha_color(ha_number * weight_conf);
