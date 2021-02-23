@@ -18,7 +18,7 @@ function getParam(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-//Firebaseサーバーから現在地を取得
+//Firebaseサーバーから現在時刻を取得
 function get_date(){
     var get_date = db.ref("/get_date");
     var newPostKey = get_date.push().key;
