@@ -57,6 +57,10 @@ input[type="button"]:focus {
     text-align: center;
 }
 
+img{
+    width: 100%;
+}
+
 #he_button{
     background-color: rgb(150, 255, 150);
 }
